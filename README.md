@@ -1,6 +1,8 @@
 # Sentinel
 
-**TODO: Add description**
+Thanks to RedWire Labs for their Naked Phoenix article (https://nerves.redwirelabs.com/runbooks/naked-phoenix)
+which allows for properly scaffolding a Nerves project with all of the config required for integrating a Phoenix web app,
+without requiring an umbrella or [poncho](https://embedded-elixir.com/post/2017-05-19-poncho-projects/) app.
 
 ## Targets
 

@@ -6,9 +6,13 @@ defmodule Sentinel.Application do
   use Application
 
   @impl true
+
   def start(_type, _args) do
     children =
       [
+        SentinelWeb.Telemetry,
+        {Phoenix.PubSub, name: Sentinel.PubSub},
+        SentinelWeb.Endpoint
         # Children for all targets
         # Starts a worker by calling: Sentinel.Worker.start_link(arg)
         # {Sentinel.Worker, arg},
@@ -35,5 +39,11 @@ defmodule Sentinel.Application do
       # Starts a worker by calling: Sentinel.Worker.start_link(arg)
       # {Sentinel.Worker, arg},
     ]
+  end
+
+  @impl true
+  def config_change(changed, _new, removed) do
+    SentinelWeb.Endpoint.config_change(changed, removed)
+    :ok
   end
 end

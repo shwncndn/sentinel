@@ -57,6 +57,15 @@ config :vintage_net,
     {"wlan0", %{type: VintageNetWiFi}}
   ]
 
+config :my_firmware, SentinelWeb.Endpoint,
+  server: true,
+  url: [host: "nerves.local", port: 80, scheme: "http"],
+  http: [ip: {0, 0, 0, 0}, port: 80],
+  code_reloader: false,
+  check_origin: false,
+  debug_errors: true,
+  secret_key_base: "PV7Fthnp7QnmGn1TvpAO8yvBs3SjXJ9iuPy/r94ckFKSsr0paDzVGdSSdUKE4Seo"
+
 config :mdns_lite,
   # The `hosts` key specifies what hostnames mdns_lite advertises.  `:hostname`
   # advertises the device's hostname.local. For the official Nerves systems, this
@@ -85,6 +94,11 @@ config :mdns_lite,
       protocol: "epmd",
       transport: "tcp",
       port: 4369
+    },
+    %{
+      protocol: "http",
+      transport: "tcp",
+      port: 80
     }
   ]
 
